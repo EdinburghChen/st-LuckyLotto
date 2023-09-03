@@ -190,6 +190,6 @@ try:
   st.write(str(issued)+"\n\n "+str(len(issued))+"/49 \n\n")
   st.write("近5期未開出獎號:")
   st.write(str(unissued)+"\n\n "+str(len(unissued))+"/49 \n\n")
-  #st.write(message)
+  st.write(message)
 except Exception as e:
   st.write("Error: %s" % e)
