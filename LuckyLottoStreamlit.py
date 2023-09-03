@@ -210,5 +210,18 @@ try:
    requests.post("https://notify-api.line.me/api/notify",headers=headers, data=data)
    st.write(mB4C3)
 
+  if st.button('B3C4', type="primary"):
+   #luckyNo
+   luckyNo=rd.sample(issuedbigone, k=3)  #近5期1次以上
+   luckyNo2=rd.sample(numbers, k=4)
+   luckyNo.extend(luckyNo2)
+   mB3C4=message+(str(luckyNo))
+   # HTTP 標頭參數與資料
+   headers = {"Authorization": "Bearer " + token}
+   data = {'message': mB3C4}
+   # 以 requests 發送 POST 請求
+   #requests.post("https://notify-api.line.me/api/notify",headers=headers, data=data)
+   st.write(mB3C4)
+    
 except Exception as e:
   st.write("Error: %s" % e)
