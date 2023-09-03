@@ -130,20 +130,20 @@ try:
   # 建立資料庫連線 SQLite
   #近5期1次以上
   cursor2=conn.cursor()
-  sqlQueryStr="SELECT 球號, COUNT(球號) AS 計數 FROM L649 WHERE 日期 IN (SELECT 日期 FROM L649 GROUP BY 日期 ORDER BY DATE(日期) DESC LIMIT 5) GROUP BY 球號 HAVING 計數 >1 ORDER BY 計數 ASC"
+  sqlQueryStr="SELECT 球號, COUNT(球號) AS 計數 FROM L649 WHERE 日期 IN (SELECT 日期 FROM L649 GROUP BY 日期 ORDER BY DATE(日期) DESC LIMIT 5) GROUP BY 球號 HAVING 計數 >1 ORDER BY 計數 DESC"
   cursor2.execute(sqlQueryStr)
 
   #近5期所有號碼
   cursor3=conn.cursor()
-  sqlQueryStr="SELECT 球號, COUNT(球號) AS 計數 FROM L649 WHERE 日期 IN (SELECT 日期 FROM L649 GROUP BY 日期 ORDER BY DATE(日期) DESC LIMIT 5) GROUP BY 球號  ORDER BY 計數 ASC"
+  sqlQueryStr="SELECT 球號, COUNT(球號) AS 計數 FROM L649 WHERE 日期 IN (SELECT 日期 FROM L649 GROUP BY 日期 ORDER BY DATE(日期) DESC LIMIT 5) GROUP BY 球號  ORDER BY 計數 DESC"
   cursor3.execute(sqlQueryStr)
 
 
   #建立一個空串列用於存放結果
   #近5期1次以上
-  result_list=[]
+  issuedbigone=[]
   #近5期所有號碼
-  result_list2=[]
+  issuedall=[]
 
   #建立一個1-49串列
   numbers = [str(x).zfill(2) for x in range(1, 50)]
@@ -151,12 +151,12 @@ try:
   #將查詢結果逐一加入串列
   #近5期1次以上
   for row in cursor2.fetchall():
-      result_list.append(row[0])
+      issuedbigone.append(row[0])
       #numbers.remove(row[0])
 
  #將查詢結果逐一加入串列
   for row in cursor3.fetchall():
-      result_list2.append(row[0])
+      issuedall.append(row[0])
       numbers.remove(row[0])
   
   conn.commit()
@@ -168,28 +168,47 @@ try:
   #Close the database connection
   conn.close() 
   
-  issued=result_list2
+  #已開出
+  issued=issuedall
+  #未開出
   unissued=numbers
-  #luckyNo
-  luckyNo=rd.sample(result_list, k=4)  #近5期1次以上
-  luckyNo2=rd.sample(numbers, k=3)
-  luckyNo.extend(luckyNo2)
 
-  message=message+(str(luckyNo))
-  
-  # HTTP 標頭參數與資料
-  headers = {"Authorization": "Bearer " + token}
-  data = {'message': message}
-  
+  #網頁顯示資料
   st.write("資料分析中")
   st.write("STEP #2 Complete!!")
-  st.write("近5期已開出獎號:")
-  st.write(str(issued)+"\n\n "+str(len(issued))+"/49 \n\n")
-  st.write("近5期未開出獎號:")
-  st.write(str(unissued)+"\n\n "+str(len(unissued))+"/49 \n\n")
-  if st.button('Line給我', type="primary"):
-    # 以 requests 發送 POST 請求
-    requests.post("https://notify-api.line.me/api/notify",headers=headers, data=data)
-    st.write(message)
+  st.write("A.近5期已開出獎號("+str(len(issued))+"/49):")
+  st.write(str(issued))
+  st.write("B.開出獎號>1次("+str(len(issuedbigone))+"/"+str(len(issued))+"):")
+  st.write(str(issuedbigone))
+  st.write("C.近5期未開出獎號("+str(len(unissued))+"/49):")
+  st.write(str(unissued))
+
+  if st.button('A6C1', type="primary"):
+   #luckyNo
+   luckyNo=rd.sample(issued, k=6)  #近5期
+   luckyNo2=rd.sample(numbers, k=1)
+   luckyNo.extend(luckyNo2)
+   mA6C1=message+(str(luckyNo))
+   # HTTP 標頭參數與資料
+   headers = {"Authorization": "Bearer " + token}
+   data = {'message': mA6C1}
+   # 以 requests 發送 POST 請求
+   requests.post("https://notify-api.line.me/api/notify",headers=headers, data=data)
+   st.write(mA6C1)
+
+
+  if st.button('B4C3', type="primary"):
+   #luckyNo
+   luckyNo=rd.sample(issuedbigone, k=4)  #近5期1次以上
+   luckyNo2=rd.sample(numbers, k=3)
+   luckyNo.extend(luckyNo2)
+   mB4C3=message+(str(luckyNo))
+   # HTTP 標頭參數與資料
+   headers = {"Authorization": "Bearer " + token}
+   data = {'message': mB4C3}
+   # 以 requests 發送 POST 請求
+   requests.post("https://notify-api.line.me/api/notify",headers=headers, data=data)
+   st.write(mB4C3)
+
 except Exception as e:
   st.write("Error: %s" % e)
