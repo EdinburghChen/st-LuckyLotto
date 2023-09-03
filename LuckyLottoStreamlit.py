@@ -17,7 +17,7 @@ st.title('小確幸')
 # 加入網頁文字內容
 #st.write("今日小確幸")
 
-conn=sqlite3.connect("./db/pydb.db")
+conn=sqlite3.connect("./pydb.db")
 
 
 # 球號
