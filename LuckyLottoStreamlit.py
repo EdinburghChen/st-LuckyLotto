@@ -181,15 +181,15 @@ try:
   headers = {"Authorization": "Bearer " + token}
   data = {'message': message}
   
-  # 以 requests 發送 POST 請求
-  requests.post("https://notify-api.line.me/api/notify",headers=headers, data=data)
-  
   st.write("資料分析中")
   st.write("STEP #2 Complete!!")
   st.write("近5期已開出獎號:")
   st.write(str(issued)+"\n\n "+str(len(issued))+"/49 \n\n")
   st.write("近5期未開出獎號:")
   st.write(str(unissued)+"\n\n "+str(len(unissued))+"/49 \n\n")
-  st.write(message)
+  if st.button('Line給我'):
+    # 以 requests 發送 POST 請求
+    requests.post("https://notify-api.line.me/api/notify",headers=headers, data=data)
+    st.write(message)
 except Exception as e:
   st.write("Error: %s" % e)
