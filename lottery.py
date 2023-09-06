@@ -228,7 +228,7 @@ try:
    luckyNo=rd.sample(issuedbigone, k=2)  #近5期1次以上
    luckyNo2=rd.sample(numbers, k=5)
    luckyNo.extend(luckyNo2)
-   mB3C4=message+(str(luckyNo))
+   mB2C5=message+(str(luckyNo))
    # HTTP 標頭參數與資料
    headers = {"Authorization": "Bearer " + token}
    data = {'message': mB2C5}
