@@ -137,14 +137,16 @@ try:
 
   for row in cursorLatest.fetchall():
       LatestNo.append(row[0])
-  
+
+  conn.commit()
   # Close the cursor and delete it
   cursorLatest.close()
   del cursorLatest
   st.write("近期獎號：:red[" + str(LatestNo)+"]")
 
 except Exception as e:
-  st.write("Error: %s" % e)
+  st.write("Error: %s" % e)  
+
 
 try:
   # 建立資料庫連線 SQLite
@@ -194,12 +196,12 @@ try:
   unissued=numbers
 
   #網頁顯示資料
-  st.write("資料分析中")
+  #st.write("資料分析中")
   #st.write("STEP #2 Complete!!")
   st.write("A.近5期已開出獎號("+str(len(issued))+"/49):")
   st.write(str(issued))
   st.write("B.開出獎號>1次("+str(len(issuedbigone))+"/"+str(len(issued))+"):")
-  st.write(str(issuedbigone))
+  st.write(":red["+str(issuedbigone)+"]")
   st.write("C.近5期未開出獎號("+str(len(unissued))+"/49):")
   st.write(str(unissued))
 
@@ -215,7 +217,7 @@ try:
    # 以 requests 發送 POST 請求
    #requests.post("https://notify-api.line.me/api/notify",headers=headers, data=data)
    st.write("A7:" + mA7)
-  
+
   if st.button('A6C1', type="primary"):
    #luckyNo
    luckyNo=rd.sample(issued, k=6)  #近5期
@@ -229,59 +231,59 @@ try:
    #requests.post("https://notify-api.line.me/api/notify",headers=headers, data=data)
    st.write("A6C1:" + mA6C1)
 
-  #if st.button('A4C3', type="primary"):
-  # #luckyNo
-  # luckyNo=rd.sample(issued, k=4)  #近5期1次以上
-  # luckyNo2=rd.sample(numbers, k=3)
-  # luckyNo.extend(luckyNo2)
-  # mA4C3=message+(str(luckyNo))
-  # # HTTP 標頭參數與資料
-  # headers = {"Authorization": "Bearer " + token}
-  # data = {'message': mA4C3}
-  # # 以 requests 發送 POST 請求
-  # #requests.post("https://notify-api.line.me/api/notify",headers=headers, data=data)
-  # st.write("A4C3:"+ mA4C3) 
+#   if st.button('A4C3', type="primary"):
+#    #luckyNo
+#    luckyNo=rd.sample(issued, k=4)  #近5期1次以上
+#    luckyNo2=rd.sample(numbers, k=3)
+#    luckyNo.extend(luckyNo2)
+#    mA4C3=message+(str(luckyNo))
+#    # HTTP 標頭參數與資料
+#    headers = {"Authorization": "Bearer " + token}
+#    data = {'message': mA4C3}
+#    # 以 requests 發送 POST 請求
+#    #requests.post("https://notify-api.line.me/api/notify",headers=headers, data=data)
+#    st.write("A4C3:"+ mA4C3)
 
-  #if st.button('B4C3', type="primary"):
-  # #luckyNo
-  # luckyNo=rd.sample(issuedbigone, k=4)  #近5期1次以上
-  # luckyNo2=rd.sample(numbers, k=3)
-  # luckyNo.extend(luckyNo2)
-  # mB4C3=message+(str(luckyNo))
-  # # HTTP 標頭參數與資料
-  # headers = {"Authorization": "Bearer " + token}
-  # data = {'message': mB4C3}
-  # # 以 requests 發送 POST 請求
-  # #requests.post("https://notify-api.line.me/api/notify",headers=headers, data=data)
-  # st.write("B4C3:" + mB4C3)
+#   if st.button('B4C3', type="primary"):
+#    #luckyNo
+#    luckyNo=rd.sample(issuedbigone, k=4)  #近5期1次以上
+#    luckyNo2=rd.sample(numbers, k=3)
+#    luckyNo.extend(luckyNo2)
+#    mB4C3=message+(str(luckyNo))
+#    # HTTP 標頭參數與資料
+#    headers = {"Authorization": "Bearer " + token}
+#    data = {'message': mB4C3}
+#    # 以 requests 發送 POST 請求
+#    #requests.post("https://notify-api.line.me/api/notify",headers=headers, data=data)
+#    st.write("B4C3:" + mB4C3)
 
-  #if st.button('B3C4', type="primary"):
-  # #luckyNo
-  # luckyNo=rd.sample(issuedbigone, k=3)  #近5期1次以上
-  # luckyNo2=rd.sample(numbers, k=4)
-  # luckyNo.extend(luckyNo2)
-  # mB3C4=message+(str(luckyNo))
-  # # HTTP 標頭參數與資料
-  # headers = {"Authorization": "Bearer " + token}
-  # data = {'message': mB3C4}
-  # # 以 requests 發送 POST 請求
-  # #requests.post("https://notify-api.line.me/api/notify",headers=headers, data=data)
-  # st.write("B3C4:" + mB3C4)
+#   if st.button('B3C4', type="primary"):
+#    #luckyNo
+#    luckyNo=rd.sample(issuedbigone, k=3)  #近5期1次以上
+#    luckyNo2=rd.sample(numbers, k=4)
+#    luckyNo.extend(luckyNo2)
+#    mB3C4=message+(str(luckyNo))
+#    # HTTP 標頭參數與資料
+#    headers = {"Authorization": "Bearer " + token}
+#    data = {'message': mB3C4}
+#    # 以 requests 發送 POST 請求
+#    #requests.post("https://notify-api.line.me/api/notify",headers=headers, data=data)
+#    st.write("B3C4:" + mB3C4)
 
-  #if st.button('B2C5', type="primary"):
-  # #luckyNo
-  # luckyNo=rd.sample(issuedbigone, k=2)  #近5期1次以上
-  # luckyNo2=rd.sample(numbers, k=5)
-  # luckyNo.extend(luckyNo2)
-  # mB2C5=message+(str(luckyNo))
-  # # HTTP 標頭參數與資料
-  # headers = {"Authorization": "Bearer " + token}
-  # data = {'message': mB2C5}
-  # # 以 requests 發送 POST 請求
-  # #requests.post("https://notify-api.line.me/api/notify",headers=headers, data=data)
-  # st.write("B2C5:" + mB2C5)
- 
- if st.button('C1', type="primary"):
+#   if st.button('B2C5', type="primary"):
+#    #luckyNo
+#    luckyNo=rd.sample(issuedbigone, k=2)  #近5期1次以上
+#    luckyNo2=rd.sample(numbers, k=5)
+#    luckyNo.extend(luckyNo2)
+#    mB2C5=message+(str(luckyNo))
+#    # HTTP 標頭參數與資料
+#    headers = {"Authorization": "Bearer " + token}
+#    data = {'message': mB2C5}
+#    # 以 requests 發送 POST 請求
+#    #requests.post("https://notify-api.line.me/api/notify",headers=headers, data=data)
+#    st.write("B2C5:" + mB2C5)
+
+  if st.button('C1', type="primary"):
    #luckyNo
    luckyNo=rd.sample(numbers, k=1)
    mC1=message+(str(luckyNo))
@@ -290,7 +292,7 @@ try:
    data = {'message': mC1}
    # 以 requests 發送 POST 請求
    #requests.post("https://notify-api.line.me/api/notify",headers=headers, data=data)
-   st.write("C1:" + mC1)  
-
+   st.write("C1:" + mC1)   
+   
 except Exception as e:
   st.write("Error: %s" % e)
