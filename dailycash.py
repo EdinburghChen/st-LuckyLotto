@@ -151,17 +151,17 @@ try:
   # 建立資料庫連線 SQLite
   #近5期1次以上
   cursor2=conn.cursor()
-  sqlQueryStr="SELECT 球號, COUNT(球號) AS 計數 FROM L539 WHERE 日期 IN (SELECT 日期 FROM L539 GROUP BY 日期 ORDER BY DATE(日期) DESC LIMIT 5) GROUP BY 球號 HAVING 計數 >1 ORDER BY 計數 DESC"
+  sqlQueryStr="SELECT 球號, COUNT(球號) AS 計數 FROM L539 WHERE 日期 IN (SELECT 日期 FROM L539 GROUP BY 日期 ORDER BY DATE(日期) DESC LIMIT 6) GROUP BY 球號 HAVING 計數 >1 ORDER BY 計數 DESC"
   cursor2.execute(sqlQueryStr)
 
   #近5期所有號碼
   cursor3=conn.cursor()
-  sqlQueryStr="SELECT 球號, COUNT(球號) AS 計數 FROM L539 WHERE 日期 IN (SELECT 日期 FROM L539 GROUP BY 日期 ORDER BY DATE(日期) DESC LIMIT 5) GROUP BY 球號  ORDER BY 計數 DESC"
+  sqlQueryStr="SELECT 球號, COUNT(球號) AS 計數 FROM L539 WHERE 日期 IN (SELECT 日期 FROM L539 GROUP BY 日期 ORDER BY DATE(日期) DESC LIMIT 6) GROUP BY 球號  ORDER BY 計數 DESC"
   cursor3.execute(sqlQueryStr)
 
 
   #建立一個空串列用於存放結果
-  #近5期1次以上
+  #近6期1次以上
   issuedbigone=[]
   #近5期所有號碼
   issuedall=[]
@@ -197,11 +197,11 @@ try:
   #網頁顯示資料
   #st.write("資料分析中")
   #st.write("STEP #2 Complete!!")
-  st.write("A.近5期已開出獎號("+str(len(issued))+"/39):")
+  st.write("A.近6期已開出獎號("+str(len(issued))+"/39):")
   st.write(str(issued))
   st.write("B.開出獎號>1次("+str(len(issuedbigone))+"/"+str(len(issued))+"):")
   st.write(":red["+str(issuedbigone)+"]")
-  st.write("C.近5期未開出獎號("+str(len(unissued))+"/39):")
+  st.write("C.近6期未開出獎號("+str(len(unissued))+"/39):")
   st.write(str(unissued))
 
   if st.button('A6', type="primary"):
