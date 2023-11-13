@@ -220,7 +220,7 @@ try:
   st.write(":red["+str(issuedbigone)+"]")
   st.write("C.第一區近4期未開出獎號("+str(len(unissued))+"/38):")
   st.write(str(unissued))
-  st.write("C.第二區近10期開出獎號("+str(len(issued2all))+"/8):")
+  st.write("D.第二區近10期開出獎號("+str(len(issued2all))+"/8):")
   st.write(":red["+str(issued2all) +"]"+ " >> " +str(numbers2))
 
   if st.button('A6', type="primary"):
