@@ -219,7 +219,7 @@ except Exception as e:
   st.write("Error: %s" % e)
 
 st.divider()
-inputdate=st.date_input('獎號日期','2024-01-01')
+inputdate=st.date_input('獎號日期',datetime.date(2024, 1, 1))
 data_Info_Dict = (st.text_input('請輸入號碼')).split(' ')
 #st.write('輸入號碼:', *data_Info_Dict)
 if st.button('新增獎號', type="primary"):
