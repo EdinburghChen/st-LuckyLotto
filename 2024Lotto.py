@@ -219,9 +219,9 @@ except Exception as e:
   st.write("Error: %s" % e)
 
 st.divider()
-inputdate=st.date_input('day',"today")
+inputdate=st.date_input('獎號日期',"today")
 data_Info_Dict = (st.text_input('請輸入號碼')).split(' ')
-st.write('輸入號碼:', *data_Info_Dict)
+#st.write('輸入號碼:', *data_Info_Dict)
 if st.button('新增獎號', type="primary"):
    #st.write('新增獎號：'+ inputdate.strftime('%Y-%m-%d')+data_Info_Dict)  
   #新增--
