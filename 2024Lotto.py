@@ -191,18 +191,18 @@ try:
 #    #requests.post("https://notify-api.line.me/api/notify",headers=headers, data=data)
 #    st.write("B3C4:" + mB3C4)
 
-#   if st.button('B2C5', type="primary"):
-#    #luckyNo
-#    luckyNo=rd.sample(issuedbigone, k=2)  #近5期1次以上
-#    luckyNo2=rd.sample(numbers, k=5)
-#    luckyNo.extend(luckyNo2)
-#    mB2C5=message+(str(luckyNo))
-#    # HTTP 標頭參數與資料
-#    headers = {"Authorization": "Bearer " + token}
-#    data = {'message': mB2C5}
-#    # 以 requests 發送 POST 請求
-#    #requests.post("https://notify-api.line.me/api/notify",headers=headers, data=data)
-#    st.write("B2C5:" + mB2C5)
+  if st.button('B2C5', type="primary"):
+   #luckyNo
+   luckyNo=rd.sample(issuedbigone, k=2)  #近5期1次以上
+   luckyNo2=rd.sample(numbers, k=5)
+   luckyNo.extend(luckyNo2)
+   mB2C5=message+(str(luckyNo))
+   # HTTP 標頭參數與資料
+   headers = {"Authorization": "Bearer " + token}
+   data = {'message': mB2C5}
+   # 以 requests 發送 POST 請求
+   #requests.post("https://notify-api.line.me/api/notify",headers=headers, data=data)
+   st.write("B2C5:" + mB2C5)
 
   if st.button('C1', type="primary"):
    #luckyNo
@@ -220,10 +220,10 @@ except Exception as e:
 
 st.divider()
 inputdate=st.date_input('獎號日期',"today")
-data_Info_Dict = st.text_input('請輸入號碼', '')
-st.write('輸入號碼:', data_Info_Dict)
+data_Info_Dict = (st.text_input('請輸入號碼')).split(' ')
+st.write('輸入號碼:', *data_Info_Dict)
 if st.button('新增獎號', type="primary"):
-   st.write('新增獎號：'+ inputdate.strftime('%Y-%m-%d')+data_Info_Dict)  
+   #st.write('新增獎號：'+ inputdate.strftime('%Y-%m-%d')+data_Info_Dict)  
   #新增--
    try:
      # 建立資料庫連線 SQLite
