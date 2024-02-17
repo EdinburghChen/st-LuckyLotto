@@ -4,4 +4,4 @@ numpy==1.25.2
 lxml==4.9.3
 beautifulsoup4==4.12.2
 requests==2.31.0
-utils>=3.8.2
+psutil >= 5.7
