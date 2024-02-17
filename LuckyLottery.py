@@ -104,7 +104,7 @@ lottery = LucasTaiwanLottery()
 result = lottery.lotto649()
 
 #近期獎號
-for i in range(3):
+for i in range(5):
   print(f"期別：{result[i]['期別']}")
   st.write(f"期別：{result[i]['期別']}，獎號：{result[i]['獎號']}[{result[i] ['特別號']}]")
 
@@ -216,7 +216,17 @@ try:
    # 以 requests 發送 POST 請求
    #requests.post("https://notify-api.line.me/api/notify",headers=headers, data=data)
    st.write("C1:" + mC1)   
-   
+ 
+ if st.button('C7', type="primary"):
+   #luckyNo
+   luckyNo=rd.sample(numbers, k=7)
+   mC7=message+(str(luckyNo))
+   # HTTP 標頭參數與資料
+   headers = {"Authorization": "Bearer " + token}
+   data = {'message': mC7}
+   # 以 requests 發送 POST 請求
+   #requests.post("https://notify-api.line.me/api/notify",headers=headers, data=data)
+   st.write("C7:" + mC7)   
 except Exception as e:
   st.write("Error: %s" % e)
 
