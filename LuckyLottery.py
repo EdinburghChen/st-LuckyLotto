@@ -221,7 +221,7 @@ except Exception as e:
 
 
 st.divider()
-inputdate=st.date_input('開獎日期',"today")
+inputdate=st.date_input('開獎日期',datetime.date.today())
 if st.button('同步開獎資料', type="primary"):
    st.write(inputdate)
    lottery.BASE_URL= 'https://api.taiwanlottery.com/TLCAPIWeB/Lottery'
