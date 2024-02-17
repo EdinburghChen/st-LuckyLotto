@@ -21,6 +21,14 @@ class LucasTaiwanLottery():
     def get_lottery_result(self, url):
         response = requests.get(url)
         return response.json() 
+
+    # 取得目前月份
+    def get_current_month():
+        return datetime.datetime.now().strftime('%m')
+
+    # 取得目前年
+    def get_current_year():
+        return datetime.datetime.now().strftime('%Y')
     
     def SQliteIns649(T開獎日期,T獎號資訊):
       try:
@@ -53,7 +61,7 @@ class LucasTaiwanLottery():
       return
 
     # 大樂透
-    def lotto649(self, back_time=[utils.get_current_year(), utils.get_current_month()]):
+    def lotto649(self, back_time=[LucasTaiwanLottery.get_current_year(), LucasTaiwanLottery.get_current_month()]):
         URL = "{}/Lotto649Result?period&month={}-{}&pageSize=31".format(self.BASE_URL, back_time[0], back_time[1])
        
 
