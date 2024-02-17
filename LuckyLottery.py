@@ -61,7 +61,7 @@ class LucasTaiwanLottery():
       return
 
     # 大樂透
-    def lotto649(self, back_time=[LucasTaiwanLottery.get_current_year(), LucasTaiwanLottery.get_current_month()]):
+    def lotto649(self, back_time=[utils.get_current_year(), utils.get_current_month()]):
         URL = "{}/Lotto649Result?period&month={}-{}&pageSize=31".format(self.BASE_URL, back_time[0], back_time[1])
        
 
