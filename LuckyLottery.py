@@ -104,9 +104,9 @@ lottery = LucasTaiwanLottery()
 result = lottery.lotto649()
 
 #近期獎號
-for i in range(5):
+for i in range(6):
   print(f"期別：{result[i]['期別']}")
-  st.write(f"期別：{result[i]['期別']}，獎號：{result[i]['獎號']}[{result[i] ['特別號']}]")
+  st.write(f"期別：{result[i]['期別']}，獎號：{result[i]['獎號']}  [{result[i] ['特別號']}]")
 
 
   
