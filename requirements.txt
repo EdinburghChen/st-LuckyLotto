@@ -4,3 +4,4 @@ numpy==1.25.2
 lxml==4.9.3
 beautifulsoup4==4.12.2
 requests==2.31.0
+web.py==0.40-dev1
