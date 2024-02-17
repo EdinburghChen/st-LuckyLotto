@@ -5,7 +5,7 @@ import sqlite3
 import streamlit as st
 import random as rd
 
-conn=sqlite3.connect("./db/pydb.db")
+conn=sqlite3.connect("./pydb.db")
 # 要發送的訊息
 message = '\n💰幸運號碼:\n'
 
