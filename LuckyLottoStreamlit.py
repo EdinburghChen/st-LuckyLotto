@@ -6,6 +6,9 @@ import streamlit as st
 import pandas as pd
 import random as rd
 
+hide_streamlit_style = """<style>[data-testid="stToolbar"] {visibility: hidden !important;}footer {visibility: hidden !important;}</style>"""
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+
 # LINE Notify 權杖
 token = 'i77jiNSxnnmmyIEPzyynUjvSQtuUycRsVn4QU5D0BBI'
 
