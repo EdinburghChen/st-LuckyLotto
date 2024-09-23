@@ -114,7 +114,8 @@ try:
 except Exception as e:
   st.write("Error: %s" % e)
 
-
+#最新1期號碼
+latestissue=[]
   
 try:
   # 建立資料庫連線 SQLite
@@ -172,6 +173,23 @@ try:
   st.write("C.近5期未開出獎號("+str(len(unissued))+"/49):")
   st.write(str(unissued))
 
+  if st.button('A7N', type="primary"):
+   
+   #排除最近一期號碼
+   numbers2 = [str(x).zfill(2) for x in range(1, 50)]
+   for lno in latestissue:
+      numbers2.remove(str(lno).zfill(2))
+   #luckyNo
+   luckyNo=rd.sample(numbers2, k=6)  #近1期未開
+   luckyNo2=rd.sample(latestissue, k=1)
+   luckyNo.extend(luckyNo2)
+   mA7N=message+(str(luckyNo))
+   # HTTP 標頭參數與資料
+   #headers = {"Authorization": "Bearer " + token}
+   #data = {'message': mA7N}
+   # 以 requests 發送 POST 請求
+   #requests.post("https://notify-api.line.me/api/notify",headers=headers, data=data)
+   st.write("A7N:" + mA7N)
   
   if st.button('A7', type="primary"):
    #luckyNo
