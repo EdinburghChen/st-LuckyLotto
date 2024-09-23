@@ -106,16 +106,21 @@ st.title('大樂透小確幸')
 lottery = LucasTaiwanLottery()
 result = lottery.lotto649()
 
+#最新1期號碼
+latestissue=[]
+
 #近期獎號
 try:
   for i in range(6):
     #print(f"期別：{result[i]['期別']}")
     st.write(f"期別：{result[i]['期別']}，獎號：{result[i]['獎號']}[{result[i] ['特別號']}]")
+    if (i==0):
+      latestissue=result[i]['獎號']
+      latestissue.append(result[i] ['特別號'])
 except Exception as e:
   st.write("Error: %s" % e)
 
-#最新1期號碼
-latestissue=[]
+
   
 try:
   # 建立資料庫連線 SQLite
